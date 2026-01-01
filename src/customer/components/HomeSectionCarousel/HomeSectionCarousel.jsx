@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState, useRef } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import HomeSectionCard from '../HomeSectionCard/HomeSectionCard';
-import { Button } from '@headlessui/react';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-// import KeyboardTabIcon from '@mui/icons-material/KeyboardTab';
 
+const HomeSectionCarousel = ({data, sectionName})=> {
 
-function HomeSectionCarousel() {
+    const carouselRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const responsive = {
         0: { items: 1 },
@@ -15,34 +15,58 @@ function HomeSectionCarousel() {
         1024: { items: 5.5 },
     };
 
-    const items = [1, 1, 1, 1, 1].map((item) => <HomeSectionCard />)
+    const slidePrev = () => {
+        if (carouselRef.current) {
+            carouselRef.current.slidePrev();
+        }
+    };
+
+    const slideNext = () => {
+        if (carouselRef.current) {
+            carouselRef.current.slideNext();
+        }
+    };
+
+    const syncActiveIndex = (e) => setActiveIndex(e.item);
+
+    const items = data.slice(0,10).map((item, i) => (
+        <HomeSectionCard key={i} product={item} />
+    ));
+
     return (
-        <div className=" px-4 lg:px-8">
-            <div className="relative p-5 ">
+        <div className=" border">
+            <h2 className="text-2xl font-extrabold text-gray-800 py-5">{sectionName}</h2>
+            <div className="relative p-5">
+
                 <AliceCarousel
+                    ref={carouselRef}
                     items={items}
                     responsive={responsive}
                     disableButtonsControls
                     disableDotsControls
-                    infinite
+                    onSlideChanged={syncActiveIndex}
+                    activeIndex={activeIndex}
                 />
 
                 {/* Right button */}
-                <button
+                {activeIndex !== items.length - 5 &&<button
+                    onClick={slideNext}
                     className="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow z-50"
                 >
                     <KeyboardArrowLeftIcon className="rotate-180 text-black" />
-                </button>
+                </button>}
 
                 {/* Left button */}
-                <button
-                    className="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow z-50"
-                >
-                    <KeyboardArrowLeftIcon className="text-black" />
-                </button>
+                {activeIndex !== 0 && (
+                    <button
+                        onClick={slidePrev}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow z-50"
+                    >
+                        <KeyboardArrowLeftIcon className="text-black" />
+                    </button>
+                )}
             </div>
         </div>
-
     );
 };
 
