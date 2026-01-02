@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Navigation from './customer/components/navigation/Navigation'
+import Navigation from './customer/components/Navigation/Navigation'
 import HomePage from './customer/pages/HomePage/HomePage';
+import Footer from './customer/components/Footer/Footer';
+import Product from './customer/components/Product/Product';
 
 function App() {
   return (
@@ -11,8 +13,11 @@ function App() {
         <Navigation />
       </div>
       <div>
-        <HomePage />
+        {/* <HomePage /> */}
+        <Product/>
       </div>
+
+      <Footer/>
     </div>
   );
 }
