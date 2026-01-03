@@ -51,11 +51,11 @@ export const singleFilter = [
         id: "price",
         name: "Price",
         options: [
-            { value: "159 - 399", label: "₹159 - ₹399" },
-            { value: "400 - 699", label: "₹400 - ₹699" },
-            { value: "700 - 999", label: "₹700 - ₹999" },
-            { value: "1000 - 1499", label: "₹1000 - ₹1499" },
-            { value: "1500 - 1999", label: "₹1500 - ₹1999" },
+            { value: "159-399", label: "₹159 - ₹399" },
+            { value: "400-699", label: "₹400 - ₹699" },
+            { value: "700-999", label: "₹700 - ₹999" },
+            { value: "1000-1499", label: "₹1000 - ₹1499" },
+            { value: "1500-1999", label: "₹1500 - ₹1999" },
             { value: "2000+", label: "₹2000+" },
         ]
     },
