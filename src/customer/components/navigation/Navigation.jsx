@@ -11,6 +11,7 @@ import {
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import { navigation } from "./navigationData";
+import { useNavigate } from "react-router-dom";
 // import { navigation } from "./navigationData";
 // import { getCart } from "../../../Redux/Customers/Cart/Action";
 // import TextField from "@mui/material/TextField";
@@ -21,6 +22,7 @@ function classNames(...classes) {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const navigate= useNavigate();
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -45,7 +47,7 @@ export default function Navigation() {
   };
 
   const handleCategoryClick = (category, section, item, close) => {
-    // navigate(`/${category.id}/${section.id}/${item.id}`);
+    navigate(`/${category.id}/${section.id}/${item.id}`);
     close();
   };
 
@@ -416,7 +418,7 @@ export default function Navigation() {
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem>
+                        <MenuItem onClick={() => navigate('/account/order')}>
                            My Orders
                         </MenuItem>
                         <MenuItem>

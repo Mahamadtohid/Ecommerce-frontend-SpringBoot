@@ -1,8 +1,8 @@
-// import { StarIcon } from '@heroicons/react/20/solid'
 import { Rating, Box ,Button, Grid, LinearProgress } from '@mui/material'
 import ProductReviewCard from './ProductReviewCard'
 import { mens_kurta } from '../../../Data/mens_kurta'
 import HomeSectionCard from '../HomeSectionCard/HomeSectionCard'
+import { useNavigate } from 'react-router-dom'
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -59,6 +59,11 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
+    const navigate = useNavigate();
+    const handleAddToCart = ()  =>{
+    navigate('/cart');
+
+}
     return (
         <div className="bg-white lg:px-20">
             <div className="pt-6">
@@ -185,7 +190,7 @@ export default function ProductDetails() {
                                     </fieldset>
                                 </div>
 
-                                <Button variant='contained' sx={{ px: "2rem", py: "0.9rem", bgcolor: "#9155fd" }}>
+                                <Button onClick={handleAddToCart} variant='contained' sx={{ px: "2rem", py: "0.9rem", bgcolor: "#9155fd" }}>
                                     Add To Cart
 
                                 </Button>
